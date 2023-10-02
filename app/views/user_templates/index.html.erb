@@ -1,0 +1,37 @@
+<nav>
+  <ul>
+    <li>
+      <a href="/users">Users</a>
+    </li>
+    <li>
+      <a href="/photos">Photos</a>
+    </li>
+  </ul>
+</nav>
+
+<h1>List of users</h1>
+
+<form action="add_user" method="post">
+  <label for="username">Username</label>
+  <input type="text" name="the_username" id="username" placeholder="Enter a username...">
+  <button type="submit">Add user</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <tbody>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th></th>
+    </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.id %></td>
+      <td><%= user.username %></td>
+      <td><a href="/users/<%= user.username %>">Show details</a></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
