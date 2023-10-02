@@ -1,0 +1,47 @@
+<nav>
+  <ul>
+    <li>
+      <a href="/users">Users</a>
+    </li>
+    <li>
+      <a href="/photos">Photos</a>
+    </li>
+  </ul>
+</nav>
+
+<h1>List of photos</h1>
+
+<form action="/add_photo" method="post">
+  <label for="image">Image</label>
+  <input type="text" name="the_image" id="image" placeholder="Enter a URL for the image">
+
+  <label for="caption">Caption</label>
+  <textarea type="text" name="the_caption" id="caption" placeholder="Enter a caption for the photo..."></textarea>
+
+  <label for="owner_id">Owner ID</label>
+  <input type="text" name="the_owner_id" id="owner_id" placeholder="Enter an ID of a User">
+
+  <button type="submit">Add photo</button>
+</form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>Image</th>
+    <th>Caption</th>
+    <th>Owner</th>
+    <th>Posted</th>
+    <th></th>
+  </tr>
+
+  <% @show_all_photos.each do |photo| %>
+  <tr>
+    <td><img src="<%= photo.image %>" alt=""></td>
+    <td><%= photo.caption %></td>
+    <td><%= photo.poster.username %></td>
+    <td><%= photo.created_at %></td>
+    <td><a href="/photos/<%= photo.id %>">Show details</a></td>
+  </tr>
+  <% end %>
+</table>
